@@ -2,6 +2,8 @@ package com.example.pmdmejer1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
     private var onCreate = 0
@@ -11,13 +13,19 @@ class MainActivity : AppCompatActivity() {
     private var onRestart = 4
     private var onStop = 5
     private var onDestroy = 6
+    private lateinit var textNombre : EditText
+    private lateinit var textApellido : EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         println("onCreate $onCreate")
+        textNombre= findViewById(R.id.editTextTextPersonName)
+        textApellido=findViewById(R.id.editTextTextPersonName2)
     }
+
+
 
     override fun onStart() {
         super.onStart()
@@ -42,6 +50,22 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         println("onDestroy $onDestroy")
+    }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle) {
+        super.onSaveInstanceState(savedInstanceState)
+
+        savedInstanceState.putString("TAGNOMBRE",textNombre.text.toString())
+        savedInstanceState.putString("TAGAPELLIDO",textApellido.text.toString())
+
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        textNombre.setText(savedInstanceState.getString("TAGNOMBRE"))
+        textApellido.setText(savedInstanceState.getString("TAGAPELLIDO"))
+
     }
 
 

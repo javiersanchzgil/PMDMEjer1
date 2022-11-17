@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PMDMEjer1</string>
+    <string name="nombre">Nombre</string>
+    <string name="pulse">Pulse</string>
+    <string name="datos">Datos</string>
+    <string name="apellido">Apellido</string>
 </resources>
